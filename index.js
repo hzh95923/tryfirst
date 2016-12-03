@@ -7,7 +7,7 @@ const bodyparser=require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 
-push2
+push
 var app=express();
 app.set('trust proxy', 1); // trust first proxy 
 app.use(session({
