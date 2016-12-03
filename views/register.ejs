@@ -1,0 +1,74 @@
+<%- include('components/header') %>
+<style type="text/css">
+	.alert{display: none;}
+</style>
+		<div class="container" style="margin-top: 300px;">
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3">
+					<form class="form-horizontal" role="form" method="post">
+						<div class="form-group">
+							<label for="name" class="col-sm-3 control-label">姓名：</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" id="name" placeholder="Name" name="name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Password" class="col-sm-3 control-label">密码：</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="Password" name="pwd" placeholder="Password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Password2" class="col-sm-3 control-label">确认密码：</label>
+							<div class="col-sm-9">
+								<input type="password" class="form-control" id="Password2" name="pwd2" placeholder="Password">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-3 col-sm-9">
+								<button type="button" class="btn btn-default" id="register">Regiter</button>
+								<a href="/login" class="btn btn-default" id="login">login</a>
+							</div>
+						</div>
+					</form>
+					<div class="alert alert-danger" role="alert"></div>
+					<div class="alert alert-success" role="alert"></div>
+				</div>
+			</div>
+		</div>
+		<script src="/js/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('#register').click(function() {
+					var name = $('#name').val();
+					var pwd = $('#Password').val();
+					var pwd2= $('#Password2').val();
+					if(!name) {
+						$(".alert-danger").show().html("用户名不能为空...");
+						return;
+					}
+					if(!pwd) {
+						$(".alert-danger").show().html("密码不能为空...");
+						return;
+					}else if(pwd!=pwd2){
+						$(".alert-danger").show().html("两次密码不一致...");
+						return;
+					}
+					$.post('/register', {
+						"name": name,
+						"pwd": pwd
+					}, function(result, status) {
+						if(result == 0) {
+							$(".alert-danger").show().html("用户名已注册...");
+						} else if(result == 1) {
+							location.href = '/';
+						}
+					});
+
+				});
+				$('input').focus(function() {
+					$(".alert").hide();
+				})
+			});
+		</script>
+<%- include("components/footer") %>

@@ -1,0 +1,26 @@
+{
+  "name": "test2",
+  "version": "1.0.0",
+  "description": "test2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "test2"
+  ],
+  "author": "xm",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.22.0",
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mongoose": "^4.7.0",
+    "mongoosedao": "^1.0.13",
+    "superagent": "^3.0.0"
+  }
+}

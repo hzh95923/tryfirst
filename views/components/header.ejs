@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title><%= title  %></title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/master.css"/>
+</head>
+<body>
+<header class="container">
+	<h1 class="row">
+		<span class="col-xs-2 col-xs-offset-2">系统头部</span>
+		<% if(username!=""){ %>
+		<span class="col-xs-4 col-xs-offset-2"><%= username %><a href="/logout">登出</a></%></span>
+		<% } %>
+	</h1>
+</header>
