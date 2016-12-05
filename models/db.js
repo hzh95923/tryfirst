@@ -1,5 +1,6 @@
-var mongoose=require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+const config = require('config-lite');
+const mongoose=require('mongoose');
+mongoose.connect(config.mongodb);
 var db= mongoose.connection;
 db.on('error',console.error.bind(console,'连接错误:'));
 db.once('open',function(){

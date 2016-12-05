@@ -1,6 +1,5 @@
 const check=require('../middleware/check.js');
 module.exports=function(app){
-	
 	app.use(/^(?!.*(\/login|\/register))/,check.checkLogin);
 	app.use(/\/login|\/register/,check.checkNotLogin);
 	app.use(['/','/index','/index.html'],require('./index'));
