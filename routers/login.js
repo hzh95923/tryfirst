@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
 				res.json(-1);
 			} else {
 				req.session.username = user[0].name;
-				req.session.level = user[0].level;
+				req.session.userlevel = user[0].level;
 				res.json(1);
 			}
 		}

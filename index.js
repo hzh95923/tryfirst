@@ -29,7 +29,8 @@ app.use(session({
 app.use(flash());
 
 app.use(function(req,res,next){
-	res.locals.user=req.session.user;
+	res.locals.username=req.session.username;
+	res.locals.userlevel=req.session.userlevel;
 	res.locals.success=req.flash('success').toString();
 	res.locals.error=req.flash('error').toString();
 	next();
