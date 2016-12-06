@@ -1,14 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const path=require('path');
-const getwebdata = require('../middleware/getwebdata.js');
-const excel2webdata=require('../middleware/excel2webdata.js')
-
-//const fs = require('fs');
+const path = require('path');
+const excel2webdata=require('../middleware/excel2webdata.js');
+//const getwebdata = require('../middleware/getwebdata.js');
 
 router.get('/', function(req, res, next) {
-	excel2webdata(path.join('./public/upload' + '/test.xlsx'),function(err,result){
-		res.json(result);
+	excel2webdata(path.join('./public/upload' + '/test.xlsx'),'http://192.168.116.9:8080/dm_com_web/productsearch.html',function(err,result){
+		return res.json(result);
 	});
 });
 

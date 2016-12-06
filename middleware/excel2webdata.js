@@ -2,33 +2,33 @@ const async = require('async');
 const xlsx = require('node-xlsx');
 const path = require('path');
 const getwebdata = require('./getwebdata.js');
-module.exports = function(file, callback) {
-	var obj = xlsx.parse(file),
-		result = {};
+
+module.exports = function(file,url,callback) {
+	var obj = xlsx.parse(file),result = {},arr = [];
 	async.waterfall([
+	    //获取excel中的数据
 		function(callback) {
 			obj.forEach(function(item) {
 				var data = [];
 				for(var i in item.data) {
-					var arr = [];
-					var value = item.data[i];
-					for(var j in value) {
-						arr.push(value[j]);
+					var value = item.data[i][0];
+					if(value){
+						data.push(value);
 					}
-					data.push(arr);
 				}
 				result[item.name] = data;
 			});
-			callback(null, result);
-		},
-		function(result) {
-			var arr = [];
-			for(var [name, val] of Object.entries(result)) {
-				arr.push(val);
+			for(var keys in result) {
+				arr.push(result[keys]);
 			}
-			async.mapSeries(arr, function(item, callback) {
-				getwebdata('http://www.dressilyme.com/productsearch.html', item, function(err, result) {
+			callback(null, arr);
+		},
+		//请求服务器并获取数据
+		function(result,callback) {
+			async.mapLimit(result,5, function(item, callback) {
+				getwebdata(url, item, function(err, result) {
 					if(err) callback(err, null);
+					console.log(result);
 					callback(null, result);
 				});
 			},function(err,result){
@@ -37,7 +37,8 @@ module.exports = function(file, callback) {
 			});
 		}
 	],function(err,result){
-		if(err) console.err(err);
+		if(err) console.error(err);
+		return callback(null, result);
 	})
 
 }

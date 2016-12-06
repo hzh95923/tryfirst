@@ -3,18 +3,19 @@ const superagent = require('superagent');
 const async=require('async');
 
 module.exports = function(url, items, callback) {
+	var result = {};
 	async.mapSeries(items, function(item, callback) {
 		superagent.get(url)
-		.query({'keyword':item[0]})
+		.query({'keyword':item})
 		.end(function(err, sres) {
 			if(err) {
 				callback(err, null);
 			}
 			var $ = cheerio.load(sres.text);
-			var items = {};
 			$('.Product_grid').each(function(index, element) {
 				var $element = $(element);
-				items = {
+				result = {
+					imgname:item,
 					href: $element.find('.showItems a').attr("href"),
 					title: $element.find('.showItems a img').attr("alt"),
 					imgurl: $element.find('.showItems a img').attr("src"),
@@ -23,7 +24,7 @@ module.exports = function(url, items, callback) {
 					id: $element.find('.hdnPid').val(),
 				};
 			});
-			callback(null, items);
+			callback(null, result);
 		});
 
 	}, function(err, result) {
