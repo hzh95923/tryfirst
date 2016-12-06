@@ -5,7 +5,8 @@ const excel2webdata=require('../middleware/excel2webdata.js');
 //const getwebdata = require('../middleware/getwebdata.js');
 
 router.get('/', function(req, res, next) {
-	excel2webdata(path.join('./public/upload' + '/test.xlsx'),'http://192.168.116.9:8080/dm_com_web/productsearch.html',function(err,result){
+	excel2webdata(path.join('./public/upload' + '/test.xlsx'),'http://www.dressilyme.com//productsearch.html',function(err,result){
+		if(err) res.json(err);
 		return res.json(result);
 	});
 });

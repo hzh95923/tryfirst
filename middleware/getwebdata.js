@@ -4,7 +4,7 @@ const async=require('async');
 
 module.exports = function(url, items, callback) {
 	var result = {};
-	async.mapSeries(items, function(item, callback) {
+	async.map(items, function(item, callback) {
 		superagent.get(url)
 		.query({'keyword':item})
 		.end(function(err, sres) {
