@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
 const md5 = require('../middleware/md5');
 const users = require('../models/users');
 const async = require('async');

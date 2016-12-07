@@ -21,12 +21,17 @@ module.exports = function(file, url, callback) {
 	for(var keys in result) {
 		arr.push(result[keys]);
 	}
-	async.map(arr, function(item, callback) {
-		getwebdata(url, item, function(err, result) {
-			if(err) callback(err, null);
-			console.log(result);
-			callback(null, result);
-		});
+
+	async.mapSeries(arr, function(item, callback) {
+		arr.forEach(function(){
+			setTimeout(function(){
+				getwebdata(url, item, function(err, result) {
+					if(err) callback(err, null);
+					callback(null, result);
+				});
+			},1000);
+		})
+		
 	}, function(err, result) {
 		if(err) callback(err, null);
 		callback(null, result);
