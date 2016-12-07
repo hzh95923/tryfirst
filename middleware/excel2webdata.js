@@ -23,15 +23,10 @@ module.exports = function(file, url, callback) {
 	}
 
 	async.mapSeries(arr, function(item, callback) {
-		arr.forEach(function(){
-			setTimeout(function(){
-				getwebdata(url, item, function(err, result) {
-					if(err) callback(err, null);
-					callback(null, result);
-				});
-			},1000);
-		})
-		
+		getwebdata(url, item, function(err, result) {
+			if(err) callback(err, null);
+			callback(null, result);
+		}); 
 	}, function(err, result) {
 		if(err) callback(err, null);
 		callback(null, result);
