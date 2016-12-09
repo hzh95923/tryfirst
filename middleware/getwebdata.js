@@ -1,12 +1,12 @@
 const cheerio = require('cheerio');
 const superagent = require('superagent');
-const async=require('async');
+const async = require('async');
 
-module.exports = function(url, items, callback) {
-	var result = {};
-	async.mapLimit(items,2, function(item, callback) {
-		superagent.get(url)
-		.query({'keyword':item})
+module.exports = function(url, item, callback) {
+	superagent.get(url)
+		.query({
+			'keyword': item
+		})
 		.end(function(err, sres) {
 			if(err) {
 				callback(err, null);
@@ -15,7 +15,7 @@ module.exports = function(url, items, callback) {
 			$('.Product_grid').each(function(index, element) {
 				var $element = $(element);
 				result = {
-					imgname:item,
+					imgname: item,
 					href: $element.find('.showItems a').attr("href"),
 					title: $element.find('.showItems a img').attr("alt"),
 					imgurl: $element.find('.showItems a img').attr("src"),
@@ -26,9 +26,4 @@ module.exports = function(url, items, callback) {
 			});
 			callback(null, result);
 		});
-
-	}, function(err, result) {
-		if(err) callback(err, null);
-		callback(null, result);
-	});
 }

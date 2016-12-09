@@ -11,10 +11,13 @@ const routers = require('./routers/routers');
 
 var app = express();
 
+
+//设置全局变量
 app.locals.cms = {
-	title: pkg.name,
-	description: pkg.description
-}
+		title: pkg.name,
+		description: pkg.description
+	}
+	//使用express-session挂载session信息
 app.set('trust proxy', 1); // trust first proxy 
 app.use(session({
 	name: config.session.key, // 设置 cookie 中保存 session id 的字段名称
@@ -25,9 +28,11 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
+
 // flash 中间件，用来显示通知
 app.use(flash());
 
+//设置局部变量
 app.use(function(req, res, next) {
 	res.locals.username = req.session.username;
 	res.locals.userlevel = req.session.userlevel;
@@ -37,19 +42,24 @@ app.use(function(req, res, next) {
 });
 app.set("view engine", "ejs");
 
+//设置静态文件目录
 app.use(express.static(path.join(__dirname, '/public')));
 
+//使用bodyparser解析请求体
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
 	extended: false
 }));
 
+//绑定路由
 routers(app);
 
+//捕获错误
 process.on('uncaughtException', function(err) {
 	console.error('Error caught in uncaughtException event:', err);
 });
 
+//端口监听
 app.listen(config.port, function() {
 	console.log(`${pkg.name} listening on port ${config.port}`);
 });
