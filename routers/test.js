@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
 	        if(err){
 	            console.log("改名失败");
 	        }
-			excel2webdata('upfiles',newpath, 'http://192.168.116.9:8080/dm_com_web/productsearch.html', function(err, result) {
+			excel2webdata(req,newpath, 'http://www.tbdress.eu/productsearch.html', function(err, result) {
 				if(err) console.log(err);
 				return res.json(result);
 			});
@@ -37,11 +37,12 @@ router.post('/', function(req, res) {
 	});
 
 });
-//router.post('/doneprogress', function(req, res) {
-////	console.log(req.session.doneprogress);
-//	if(!global[name]){
-//		global[name]=0;
-//	}
-//	res.json(global[name]);
-//});
+router.post('/doneprogress', function(req, res) {
+	
+	if(!req.session.doneprogress){
+		req.session.doneprogress=0;
+	}
+	console.log(req.session.doneprogress);
+	res.json(req.session.doneprogress);
+});
 module.exports = router;

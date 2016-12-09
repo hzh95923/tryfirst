@@ -11,7 +11,6 @@ const routers = require('./routers/routers');
 
 var app = express();
 
-
 //设置全局变量
 app.locals.cms = {
 		title: pkg.name,

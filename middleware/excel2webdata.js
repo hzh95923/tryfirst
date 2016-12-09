@@ -3,13 +3,7 @@ const xlsx = require('node-xlsx');
 const path = require('path');
 const getwebdata = require('./getwebdata.js');
 
-const express = require('express');
-var app = express();
-//socket.io公式：
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-module.exports = function(name, file, url, callback) {
+module.exports = function(req,file, url, callback) {
 	//获取excel中的数据
 	var obj = xlsx.parse(file),
 		result = {},
@@ -34,12 +28,8 @@ module.exports = function(name, file, url, callback) {
 		async.mapLimit(items, 2, function(item, callback) {
 			getwebdata(url, item, function(err, result) {
 				if(err) callback(err, null);
-
-				//global[name]=Math.floor(++donenum/allnum*100);
-
-				io.on("connection", function(socket) {
-					socket.emit(name, Math.floor(++donenum/allnum*100));
-				});
+				req.session.doneprogress = Math.floor(++donenum / allnum * 100);
+				req.session.save();
 				callback(null, result);
 			});
 		}, function(err, result) {

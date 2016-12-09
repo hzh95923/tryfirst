@@ -7,11 +7,9 @@
 	</div>
 	<button id="submit" type="button" class="btn btn-default">Submit</button>
 </form>
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function() {
-		var socket = io();
 		$('#submit').click(function() {
 			var fd = new FormData($('#formupload')[0]);
 			$.ajax({
@@ -30,25 +28,22 @@
 			var time = setInterval(function() {
 
 			}, 1000);
-			socket.on("upfiles",function(msg){
-				console.log(msg);
-			});
-//			getProgress();
+			getProgress();
 		});
 
-//		function getProgress() {
-//			$.ajax({
-//				type: "post",
-//				url: "/test/doneprogress",
-//				async: true,
-//				success: function(data) {
-//					if(data < 100) {
-//						setTimeout(getProgress, 1000);
-//					}
-//					console.log(data);
-//				}
-//			});
-//		}
+		function getProgress() {
+			$.ajax({
+				type: "post",
+				url: "/test/doneprogress",
+				async: true,
+				success: function(data) {
+					if(data < 100) {
+						setTimeout(getProgress, 1000);
+					}
+					console.log(data);
+				}
+			});
+		}
 	});
 </script>
 <%- include("components/footer") %>
