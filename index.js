@@ -16,7 +16,7 @@ app.locals.cms = {
 		title: pkg.name,
 		description: pkg.description
 	}
-	//使用express-session挂载session信息
+//使用express-session挂载session信息
 app.set('trust proxy', 1); // trust first proxy 
 app.use(session({
 	name: config.session.key, // 设置 cookie 中保存 session id 的字段名称

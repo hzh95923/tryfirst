@@ -3,7 +3,7 @@ const xlsx = require('node-xlsx');
 const path = require('path');
 const getwebdata = require('./getwebdata.js');
 
-module.exports = function(req,file, url, callback) {
+module.exports = function(name,req,file, url, callback) {
 	//获取excel中的数据
 	var obj = xlsx.parse(file),
 		result = {},
