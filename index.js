@@ -9,14 +9,19 @@ const pkg = require('./package');
 const config = require('config-lite');
 const routers = require('./routers/routers');
 
-var app = express();
+const app = express();
+//实时通讯
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
+app.io=io;
+io.on("connection", function(socket) {});
 
 //设置全局变量
 app.locals.cms = {
 		title: pkg.name,
 		description: pkg.description
 	}
-//使用express-session挂载session信息
+	//使用express-session挂载session信息
 app.set('trust proxy', 1); // trust first proxy 
 app.use(session({
 	name: config.session.key, // 设置 cookie 中保存 session id 的字段名称
@@ -59,6 +64,6 @@ process.on('uncaughtException', function(err) {
 });
 
 //端口监听
-app.listen(config.port, function() {
+server.listen(config.port, function() {
 	console.log(`${pkg.name} listening on port ${config.port}`);
 });

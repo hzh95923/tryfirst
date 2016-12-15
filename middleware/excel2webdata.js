@@ -3,7 +3,7 @@ const xlsx = require('node-xlsx');
 const path = require('path');
 const getwebdata = require('./getwebdata.js');
 
-module.exports = function(name,req,file, url, callback) {
+module.exports = function(name, req, file, url, callback) {
 	//获取excel中的数据
 	var obj = xlsx.parse(file),
 		result = {},
@@ -28,7 +28,7 @@ module.exports = function(name,req,file, url, callback) {
 		async.mapLimit(items, 2, function(item, callback) {
 			getwebdata(url, item, function(err, result) {
 				if(err) callback(err, null);
-				req.session.doneprogress = Math.floor(++donenum / allnum * 100);
+				req.session[name] = Math.floor(++donenum / allnum * 100);
 				req.session.save();
 				callback(null, result);
 			});
@@ -38,7 +38,6 @@ module.exports = function(name,req,file, url, callback) {
 		});
 
 	}, function(err, result) {
-
 		if(err) callback(err, null);
 		callback(null, result);
 	});
