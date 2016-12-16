@@ -24,6 +24,6 @@ module.exports = function(url, item, callback) {
 					id: $element.find('.hdnPid').val(),
 				};
 			});
-			callback(null, result);
+			return callback(null, result);
 		});
 }

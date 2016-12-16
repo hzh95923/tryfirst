@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const path = require('path');
-const excel2webdata = require('../middleware/excel2webdata.js');
 const formidable = require('formidable');
 const fs = require('fs');
+const getwebdata = require('../middleware/getwebdata.js');
+const xlsx = require('node-xlsx');
+const async = require('async');
 
 module.exports = function(io) {
 	router.get('/', function(req, res) {
@@ -10,7 +12,6 @@ module.exports = function(io) {
 			'title': "测试页面"
 		});
 	});
-
 	router.post('/', function(req, res) {
 		var form = new formidable.IncomingForm();
 		form.uploadDir = "./public/upload";
@@ -21,30 +22,50 @@ module.exports = function(io) {
 				var oldpath = path.join(__dirname + '/../' + files.upfiles.path);
 				var newpath = path.join(__dirname + '/../' + form.uploadDir + '/' + name);
 				fs.rename(oldpath, newpath, function(err) {
-					if(err) {
-						return console.log("改名失败");
+					if(err) return console.log("改名失败");
+					var obj = xlsx.parse(newpath),
+						result = {},
+						arr = [],
+						allnum = 0,
+						donenum = 0;
+					obj.forEach(function(item) {
+						var data = [];
+						for(var i in item.data) {
+							var value = item.data[i][0];
+							if(value) {
+								data.push(value);
+							}
+						}
+						result[item.name] = data;
+						allnum = allnum + data.length;
+					});
+					for(var keys in result) {
+						arr.push(result[keys]);
 					}
-					excel2webdata('doneprogress', req, newpath, 'http://192.168.116.9:8080/dm_com_web/productsearch.html', function(err, result) {
+					//	异步请求网站抓取数据
+					async.mapSeries(arr, function(items, callback) {
+						async.mapLimit(items, 2, function(item, callback) {
+							getwebdata('http://192.168.116.9:8080/dm_com_web/productsearch.html', item, function(err, result) {
+								if(err) return callback(err, null);
+								req.session.doneprogress = Math.floor(++donenum / allnum * 100);
+								req.session.save();
+								io.sockets.emit('dataToUser', req.session.doneprogress);
+								return callback(null, result);
+							});
+						}, function(err, result) {
+							if(err) return callback(err, null);
+							return callback(null, result);
+						});
+
+					}, function(err, result) {
 						if(err) return console.log(err);
 						return res.json(result);
 					});
-
 				});
 			} else {
 				return res.json('未上传文件');
 			}
 		});
-		(function returnprogress(argu) {
-			if(!req.session.doneprogress||argu) {
-				req.session.doneprogress = 0;
-			}
-			io.sockets.emit('dataToUser', req.session.doneprogress);
-			if(!req.session.doneprogress || req.session.doneprogress < 100) {
-				setTimeout(returnprogress, 1000);
-			}
-		})(1);
-
 	});
-
 	return router;
 }

@@ -1,7 +1,6 @@
 <%- include('components/header') %>
 <style type="text/css">
 	.progress{display: none;}
-
 </style>
 <div class="container" style="margin-top: 300px;">
 	<div class="row">
@@ -29,6 +28,9 @@
 		$('#submit').click(function() {
 			var socket = io();
 			var fd = new FormData($('#formupload')[0]);
+			if(!$('.upfiles').val()){
+				return;
+			}
 			$.ajax({
 				type: "post",
 				url: "/test",

@@ -24,22 +24,23 @@ module.exports = function(name, req, file, url, callback) {
 	for(var keys in result) {
 		arr.push(result[keys]);
 	}
+//	获取excel数据arr
 	async.mapSeries(arr, function(items, callback) {
 		async.mapLimit(items, 2, function(item, callback) {
 			getwebdata(url, item, function(err, result) {
-				if(err) callback(err, null);
+				if(err)return callback(err, null);
 				req.session[name] = Math.floor(++donenum / allnum * 100);
 				req.session.save();
-				callback(null, result);
+				return callback(null, result);
 			});
 		}, function(err, result) {
-			if(err) callback(err, null);
-			callback(null, result);
+			if(err)return callback(err, null);
+			return callback(null, result);
 		});
 
 	}, function(err, result) {
-		if(err) callback(err, null);
-		callback(null, result);
+		if(err)return callback(err, null);
+		return callback(null, result);
 	});
 
 }
