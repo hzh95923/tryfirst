@@ -1,5 +1,11 @@
 <footer>
-	<h2 style="text-align: center;background: #ccc;">这是底部</h2>
+	<h2 style="text-align: center;background: #ccc;">系统底部</h2>
 </footer>
+<script type="text/javascript">
+	$(function(){
+		var active=$.trim($('.breadcrumb .active').text());
+		$('.nav [data-name="'+active+'"]').addClass('active');
+	});
+</script>
 </body>
 </html>

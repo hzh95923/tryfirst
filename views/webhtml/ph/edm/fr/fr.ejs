@@ -1,0 +1,162 @@
+﻿<table style="font-size:12px; font-family:Arial, Helvetica, sans-serif; color:#000000;" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="650">
+	<tbody>
+		<tr>
+			<td style="padding-top:5px;">
+				<table border="0" cellpadding="0" cellspacing="0" width="650">
+					<tbody>
+						<tr>
+							<td align="left" valign="top" width="225">
+								<a href="<%= data.Others[0].href %>" target="_blank"><img src="images/logo.jpg" style="border:none; display:block;" border="0" height="60" width="265"></a>
+							</td>
+							<td width="295"></td>
+							<td align="right" valign="top" width="130">
+								<a href="<%= data.Others[1].href %>" target="_blank"><img src="images/mobile.jpg" style="border:none; display:block;" border="0" height="60" width="130"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-bottom:#339900 solid 2px;">
+				<table style="font-size:11px; font-family:Arial, Helvetica, sans-serif; background:#f8f8f8; height:34px;" width="650" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<tr>
+							<td style=" border-right:#e8e8e8 solid 1px;" width="97" valign="top">
+								<a href="<%= data.Others[2].href %>" target="_blank"><img src="images/smart-bargain.jpg" style="display:block;" width="97" height="34" border="0"></a>
+							</td>
+							<td style="border-right:#e8e8e8 solid 1px;" width="58" align="center">
+								<a href="<%= data.Others[3].href %>" target="_blank" style="color:#333333; text-decoration:none; display:block; line-height:12px; padding:5px 0;">Perles A Bijoux</a>
+							</td>
+							<td style="border-right:#e8e8e8 solid 1px;" width="88" align="center">
+								<a href="<%= data.Others[4].href %>" target="_blank" style="color:#333333; text-decoration:none; display:block; line-height:12px; padding:5px 0;">Accessoires A Bijoux</a>
+							</td>
+							<td style="border-right:#e8e8e8 solid 1px;" width="75" align="center">
+								<a href="<%= data.Others[5].href %>" target="_blank" style="color:#333333; text-decoration:none; display:block; line-height:12px; padding:5px 0;">Outils Et Emballages</a>
+							</td>
+							<td style="border-right:#e8e8e8 solid 1px;" width="91" align="center">
+								<a href="<%= data.Others[6].href %>" target="_blank" style="color:#333333; text-decoration:none; display:block; line-height:12px; padding:5px 0;">Chaînes, Fils et Rubans</a>
+							</td>
+							<td style="border-right:#e8e8e8 solid 1px;" width="91" align="center">
+								<a href="<%= data.Others[7].href %>" target="_blank" style="color:#333333; text-decoration:none; display:block; line-height:12px; padding:5px 0;">Accessoires de Cheveux</a>
+							</td>
+							<td style="border-right:#e8e8e8 solid 1px;" width="70" align="center">
+								<a href="<%= data.Others[8].href %>" target="_blank" style="line-height:12px; padding:5px 0; color:#333333; text-decoration:none; display:block;">Bijoux <br>&amp; Montres</a>
+							</td>
+							<td style="line-height:18px;" width="73" align="center">
+								<a href="<%= data.Others[9].href %>" target="_blank" style="line-height:12px; padding:5px 0; color:#333333; text-decoration:none; display:block;">Couture<br>&amp; Tricotage</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="5"></td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<a href="<%= data.Others[10].href %>" target="_blank">
+					<img src="images/<%= data.Others[10].src %>.jpg" style="border:none; display:block;" height="<%= data.Others[10].height %>" width="650"></a>
+			</td>
+		</tr>
+		<tr>
+			<td height="10" bgcolor="#ffffff"></td>
+		</tr>
+		<tr>
+			<td>
+				<table width="650" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td bgcolor="#f081b4" height="30">
+							<table style="font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#ffffff; font-weight:bold;" border="0" cellpadding="0" cellspacing="0" width="650">
+								<tbody>
+									<tr>
+										<td style="text-align:center;line-height:30px; font-size:16px;padding-left: 60px;" width="" align="center">Nouveautés</td>
+										<td style="text-align:left;line-height:30px; font-size:12px;" width="60" align="center">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td valign="top">
+							<table style="font-size:16px; color:#000000; font-family:Arial, Helvetica, sans-serif;" width="650" cellspacing="0" cellpadding="0" border="0">
+								<tbody>
+
+									<tr>
+										<td style="background-color: #f4e0f5;padding-top: 10px;">
+											<table cellspacing="0" cellpadding="0" border="0">
+												<tbody>
+													<% data.HottestCategories.forEach(function(data, index){   %>
+														<% if(!(index%3)){ %>  <tr> <% } %>
+															<% include ../HottestCategories %>
+														<% if(!((index+1)%3)){ %>  </tr> <% } %>
+													<% }) %>
+												</tbody>
+											</table>
+
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#f081b4" height="30">
+				<table style="font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#ffffff; font-weight:bold;" border="0" cellpadding="0" cellspacing="0" width="650">
+					<tbody>
+						<tr>
+							<td style="text-align:center;line-height:30px; font-size:16px;padding-left: 60px;">Articles les plus chauds</td>
+							<td width="60px" align="left">
+								<a href="<%= data.Others[11].href %>" style="color: #ffffff;font-size: 12px;border-bottom: 2px solid #ffffff; text-decoration: none;">
+									Plus >>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:10px 0 1px 0;" bgcolor="#f4e0f5">
+				<table style="font-family:Arial, Helvetica, sans-serif; font-size:12px;" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<% data.HottestItems.forEach(function(data, index){   %>
+							<% if(!(index%4)){ %>  <tr> <% } %>
+								<% include ../HottestItems %>
+							<% if(!((index+1)%4)){ %>  </tr> <% } %>
+						<% }) %>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td height="10"></td>
+		</tr>
+		<tr>
+			<td style="padding:8px 0 10px 16px;" bgcolor="#eeeeee">
+				<table style="font-size:12px; font-family:Arial, Helvetica, sans-serif; color:#000000;" border="0" cellpadding="0" cellspacing="0" width="634">
+					<tbody>
+						<tr>
+							<td style="padding:5px 0;">Vous vous abonnez actuellement comme: chenyf@itecheasy.com</td>
+						</tr>
+						<tr>
+							<td style="line-height:25px;">
+								<a target="blank" style="color:#3a579a; text-decoration:underline;" href="#">Désabonnez-vous</a><br> Horaires de Travail: De Lundi A Vendredi 8:30a.m. -5:30p.m. GMT+8<br> Suivez-nous sur ...<br>
+								<a style="display:inline-block; padding:5px 0 10px;" target="blank" href="<%= data.Others[12].href %>"><img src="images/facebook.jpg" style="border:0;" height="34" width="131"></a>
+							</td>
+						</tr>
+						<tr>
+							<td>&copy; 2003-2017 ECWORLD INTERNATIONAL LIMITED Tous droits réservés. </td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>

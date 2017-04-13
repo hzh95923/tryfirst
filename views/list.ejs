@@ -1,0 +1,466 @@
+<%- include('components/header') %>
+<style type="text/css">
+	th, td{ text-align: center;}
+	.createUrl{ font-weight: bold;}
+
+</style>
+<div class="container content">
+	<div class="row">
+		<div class="col-xs-2">
+			<%- include('components/left') %>
+		</div>
+		<div class="col-xs-8 col-xs-offset-1" style="padding: 0;">
+			<div class="btn-group" role="group" aria-label="..." style="margin-bottom: 10px;">
+				<a type="button" class="btn btn-default" id="add" data-toggle="modal" data-target="#addContent">新增</a>
+				<a type="button" class="btn btn-default" id="update" data-toggle="modal" data-target="#updateContent">编辑</a>
+				<a type="button" class="btn btn-default" id="delete" data-toggle="modal" data-target="#deleteContent">删除</a>
+			</div>
+			<table class="table table-bordered  table-hover ">
+				<thead>
+					<tr>
+						<th>网站</th>
+						<th>网页</th>
+						<th>语言</th>
+						<th>数据源</th>
+						<th>链接</th>
+					</tr>
+
+					<tr>
+						<td>
+							<select name="name" id="firstDir">
+								<% names.forEach(function(items){ %>
+								<% if(firstDir&&items==firstDir){ %>
+								<option value="<%= items %>" selected="true">
+									<%= items %>
+								</option>
+								<% }else{ %>
+								<option value="<%= items %>">
+									<%= items %>
+								</option>
+								<% } %>
+								<% }) %>
+							</select>
+						</td>
+						<td>
+							<select name="page" id="secondDir">
+								<% pages.forEach(function(items){ %>
+								<% if(secondDir&&items==secondDir){ %>
+								<option value="<%= items %>" selected="true">
+									<%= items %>
+								</option>
+								<% }else{ %>
+								<option value="<%= items %>">
+									<%= items %>
+								</option>
+								<% } %>
+								<% }) %>
+							</select>
+						</td>
+						<td>
+							<input type="hidden" name="lang" id="lang" value="<%= langs %>" />
+						</td>
+						<td>
+							<select name="data" id="Data">
+								<% Excels.forEach(function(items){ %>
+								<% if(Data&&items==Data){ %>
+								<option value="<%= items %>" selected="true">
+									<%= items %>
+								</option>
+								<% }else{ %>
+								<option value="<%= items %>">
+									<%= items %>
+								</option>
+								<% } %>
+								<% }) %>
+							</select>
+						</td>
+						<td>
+							<a href="javascript:void(0);" class="createUrl text-success">创建链接</a>
+						</td>
+					</tr>
+
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>
+
+<!--新增模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="addContent">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center">新增页面</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>网站</label>
+						<input type="text" class="form-control" name='name' placeholder="网站">
+					</div>
+					<div class="form-group">
+						<label>网页</label>
+						<input type="text" class="form-control" name='page' placeholder="网页">
+					</div>
+					<div class="form-group">
+						<label>语言</label><br />
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang'  value="en"> en</label>
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang'  value="de"> de</label>
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang'  value="fr"> fr</label>
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang'  value="es"> es</label>
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang' value="it"> it</label>
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang'  value="ru"> ru</label>
+						<label class="checkbox-inline addLang"><input type="checkbox" name='lang'  value="jp"> jp</label>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				<button type="button" class="btn btn-primary save">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--编辑模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="updateContent">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center">编辑页面</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>网站</label>
+						<select name="name" id="updateName" class="form-control">
+							<% names.forEach(function(items){ %>
+							<% if(firstDir&&items==firstDir){ %>
+							<option value="<%= items %>" selected="true">
+								<%= items %>
+							</option>
+							<% }else{ %>
+							<option value="<%= items %>">
+								<%= items %>
+							</option>
+							<% } %>
+							<% }) %>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>网页</label>
+						<select name="page" id="updatePage" class="form-control">
+							<% pages.forEach(function(items){ %>
+							<% if(secondDir&&items==secondDir){ %>
+							<option value="<%= items %>" selected="true">
+								<%= items %>
+							</option>
+							<% }else{ %>
+							<option value="<%= items %>">
+								<%= items %>
+							</option>
+							<% } %>
+							<% }) %>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>语言</label><br />
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="en"> en</label>
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="de"> de</label>
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="fr"> fr</label>
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="es"> es</label>
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="it"> it</label>
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="ru"> ru</label>
+						<label class="checkbox-inline updateLang"><input type="checkbox" name='lang'  value="jp"> jp</label>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary save">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!--删除模态框-->
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteContent">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title text-center">编辑页面</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label>网站</label>
+						<select name="name" id="deleteName" class="form-control">
+							<% names.forEach(function(items){ %>
+							<% if(firstDir&&items==firstDir){ %>
+							<option value="<%= items %>" selected="true">
+								<%= items %>
+							</option>
+							<% }else{ %>
+							<option value="<%= items %>">
+								<%= items %>
+							</option>
+							<% } %>
+							<% }) %>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>网页</label>
+						<select name="page" id="deletePage" class="form-control">
+							<% pages.forEach(function(items){ %>
+							<% if(secondDir&&items==secondDir){ %>
+							<option value="<%= items %>" selected="true">
+								<%= items %>
+							</option>
+							<% }else{ %>
+							<option value="<%= items %>">
+								<%= items %>
+							</option>
+							<% } %>
+							<% }) %>
+						</select>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary save1">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<script src="/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		
+//		网站选择框
+		$('#firstDir').change(function() {
+			var val = $(this).val();
+			var data = {
+				'firstDir': val
+			};
+			$.ajax({
+				type: "post",
+				url: '/list/getSecondDir',
+				data: data,
+				success: function(data) {
+					var pages = "",
+						Data = '';
+					data.pages.forEach(function(item) {
+						pages += "<option value='" + item + "'>" + item + "</option>";
+					});
+					$('#secondDir').html(pages);
+					$("#lang").val(data.langs);
+					data.excels.forEach(function(item) {
+						Data += "<option value='" + item + "'>" + item + "</option>";
+					});
+					$('#Data').html(Data);
+				}
+			});
+		});
+		
+//		网页选择框
+		$('#secondDir').change(function() {
+			var firstDir = $('#firstDir').val();
+			var val = $(this).val();
+			var data = {
+				'firstDir': firstDir,
+				'secondDir': val
+			};
+			$.ajax({
+				type: "post",
+				url: '/list/getData',
+				data: data,
+				success: function(data) {
+					var html = "";
+					data.excels.forEach(function(item) {
+						html += "<option value='" + item + "'>" + item + "</option>";
+					});
+					$('#Data').html(html);
+					$("#lang").val(data.langs);
+				}
+			});
+		});
+		
+//		创建链接
+		$('.createUrl').click(function() {
+			var langs = $('#lang').val().split(',');
+			console.log(langs);
+			var name = $('#firstDir').val();
+			var page = $('#secondDir').val();
+			var excel = $('#Data').val();
+			var html = '';
+			langs.forEach(function(item) {
+				html += "<tr><td>" + name + "</td><td>" + page + "</td><td>" + item + "</td><td>" + excel + "</td><td><a href='/webhtml/" + name + "/" + page + "/" + item + "/" + item + "?excel=" + name+"_"+page+"_"+excel + "' target='_blank'>点击跳转</a></td></tr>";
+			});
+			$('tbody').html(html);
+		});
+
+//		编辑网站
+		$('#updateName').change(function() {
+			var val = $(this).val();
+			var data = {
+				'firstDir': val
+			};
+			$.ajax({
+				type: "post",
+				url: '/list/getSecondDir',
+				data: data,
+				success: function(data) {
+					var pages = "";
+					data.pages.forEach(function(item) {
+						pages += "<option value='" + item + "'>" + item + "</option>";
+					});
+					$('#updatePage').html(pages);
+					$(".updateLang input").prop('checked', false).attr('checked', false);
+					data.langs[0].forEach(function(item) {
+						$(".updateLang input[value='" + item + "']").prop('checked', true).attr('checked', true);
+					});
+				}
+			});
+		});
+		
+//		编辑页面
+		$('#updatePage').change(function() {
+			var firstDir = $('#updateName').val();
+			var val = $(this).val();
+			var data = {
+				'firstDir': firstDir,
+				'secondDir': val
+			};
+			$.ajax({
+				type: "post",
+				url: '/list/getData',
+				data: data,
+				success: function(data) {
+					$(".updateLang input").prop('checked', false).attr('checked', false);
+					var langs = data.langs[0].split(',');
+					langs.forEach(function(item) {
+						$(".updateLang input[value='" + item + "']").prop('checked', true).attr('checked', true);
+					});
+				}
+			});
+		});
+		
+//		多选框点击事件
+		$('input[name="lang"]').click(function() {
+			if($(this).attr('checked')) {
+				$(this).attr('checked', false);
+			} else {
+				$(this).attr('checked', true);
+			}
+
+		});
+		
+//		增加和修改保存按钮
+		$(".save").click(function() {
+			var data = {},
+				arr = [];
+			var $this = $(this);
+			var $module = $this.parents('.modal');
+			data.firstDir = $module.find('[name="name"]').val();
+			data.secondDir = $module.find('[name="page"]').val();
+			$module.find('input[name="lang"][checked]').each(function() {
+				arr.push($(this).val());
+			});
+			data.langs = arr.join(',');
+			if(!(data.firstDir && data.secondDir && data.langs[0])) {
+				console.log(data);
+				return;
+			}
+			$.ajax({
+				type: "post",
+				url: '/list/addOrUpdate',
+				data: data,
+				success: function(result) {
+					if(result == 1) {
+						$('.modal,.modal-backdrop').hide();
+						$('.result').html('<a href="javascript:void(0);">操作成功,点击刷新</a>');
+						$('.result').click(function() {
+							window.location.reload();
+						});
+					}
+				}
+			});
+		});
+
+//		删除网站按钮
+		$('#deleteName').change(function() {
+			var val = $(this).val();
+			var data = {
+				'firstDir': val
+			};
+			$.ajax({
+				type: "post",
+				url: '/list/getSecondDir',
+				data: data,
+				success: function(data) {
+					var pages = "";
+					data.pages.forEach(function(item) {
+						pages += "<option value='" + item + "'>" + item + "</option>";
+					});
+					$('#deletePage').html(pages);
+				}
+			});
+		});
+
+//		删除保存按钮
+		$(".save1").click(function() {
+			var data = {};
+			var $this = $(this);
+			var $module = $this.parents('.modal');
+			data.firstDir = $module.find('[name="name"]').val();
+			data.secondDir = $module.find('[name="page"]').val();
+			if(!(data.firstDir && data.secondDir)) {
+				console.log(data);
+				return;
+			}
+			$.ajax({
+				type: "post",
+				url: '/list/delete',
+				data: data,
+				success: function(result) {
+					if(result == 1) {
+						$('.modal,.modal-backdrop').hide();
+						$('.result').html('<a href="javascript:void(0);">操作成功,点击刷新</a>');
+						$('.result').click(function() {
+							window.location.reload();
+						});
+					}
+				}
+			});
+		});
+		
+//		初始化编辑界面多选框
+		var langs=$("#lang").val().split(',');
+		$("#updateContent").find('[name="lang"]').each(function(){
+			var $this=$(this);
+			if(langs.includes($this.val())){
+				$this.prop('checked', true).attr('checked', true);
+			}
+		});
+	});
+</script>
+
+<%- include("components/footer") %>

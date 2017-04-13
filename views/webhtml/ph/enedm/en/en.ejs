@@ -1,0 +1,106 @@
+<table width="650" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; background:#fff;">
+	<tr>
+		<td width="650">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#FFFFFF;">
+				<tr>
+					<td width="560">
+						<a href="<%= data.Others[0].href %>" target="_blank"><img src="images/ph-logo.jpg" width="225" height="60" border="0" style="border:none; display:block;" /></a>
+					</td>
+					<td>
+						<a href="<%= data.Others[1].href %>" target="_blank"><img src="images/mobile.jpg" width="130" height="60" border="0" style="border:none; display:block;" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="border-bottom:#390 solid 2px">
+			<table style="font-size:11px;font-family:Arial,Helvetica,sans-serif;background:#f8f8f8;height:37px" width="650" cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+					<tr>
+						<td style="border-right:#e8e8e8 solid 1px" width="100" valign="top">
+							<a target="_blank" href="<%= data.Others[2].href %>">
+								<img style="display:block" src="images/smart-bargains.jpg" width="100" height="37" border="0"></a>
+						</td>
+						<td style="border-right:#e8e8e8 solid 1px" width="67" align="center">
+							<a style="color:#333;text-decoration:none;display:block;line-height:14px;padding:5px 0 4px" target="_blank" href="<%= data.Others[3].href %>">Jewelry Beads</a>
+						</td>
+						<td style="border-right:#e8e8e8 solid 1px" width="69" align="center">
+							<a style="color:#333;text-decoration:none;display:block;line-height:14px;padding:5px 0 4px" target="_blank" href="<%= data.Others[4].href %>">Jewelry Findings</a>
+						</td>
+						<td style="border-right:#e8e8e8 solid 1px" width="73" align="center">
+							<a style="color:#333;text-decoration:none;display:block;line-height:14px;padding:5px 0 4px" target="_blank" href="<%= data.Others[5].href %>">Beading Supplies</a>
+						</td>
+						<td style="border-right:#e8e8e8 solid 1px" width="74" align="center">
+							<a style="color:#333;text-decoration:none;display:block;line-height:14px;padding:5px 0 4px" target="_blank" href="<%= data.Others[6].href %>">Stringing Materials</a>
+						</td>
+						<td style="border-right:#e8e8e8 solid 1px" width="110" align="center">
+							<a style="color:#333;text-decoration:none;display:block;line-height:14px;padding:5px 0 4px" target="_blank" href="<%= data.Others[7].href %>">Hair Accessories &amp; Findings</a>
+						</td>
+						<td style="border-right:#e8e8e8 solid 1px" width="78" align="center">
+							<a style="line-height:14px;padding:5px 0 4px;color:#333;text-decoration:none;display:block" target="_blank" href="<%= data.Others[8].href %>">Jewelry &amp; Watches</a>
+						</td>
+						<td width="72" align="center">
+							<a style="line-height:14px;padding:5px 0 4px;color:#333;text-decoration:none;display:block" target="_blank" href="<%= data.Others[9].href %>">Sewing &amp; Knitting</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:5px 0 0px 0;">
+			<table width="650" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="padding-bottom:10px;">
+						<a href="<%= data.Others[10].href %>" target="_blank"><img src="images/<%= data.Others[10].src %>.jpg" width="650" height="<%= data.Others[10].height %>" border="0" style="display:block;" /></a>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="650" border="0" cellspacing="0" cellpadding="0" style="background:#fff; margin:0px auto; font-size:12px;">
+				<tr>
+					<td colspan="4">
+						<table width="650" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="470" height="30" align="center" style="background:#f4f4f4; font-size:18px; padding-left:90px; ">Hot Sales</td>
+								<td width="90" height="30" align="right" style="background:#f4f4f4; font-size:12px; padding-right:10px; ">
+									<a href="<%= data.Others[11].href %>" target="_blank" style="text-decoration:underline; color:#000;">See More>></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<% data.EnHotSales.forEach(function(data, index){   %>
+					<% if(!(index%4)){ %>  <tr> <% } %>
+						<% include ../EnHotSales %>
+					<% if(!((index+1)%4)){ %>  </tr> <% } %>
+				<% }) %>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding:10px 0;" colspan="2">
+			<table width="650" border="0" cellspacing="0" cellpadding="0" style="background:#fff; margin:0px auto; font-size:12px;">
+				<tr>
+					<td colspan="4">
+						<table width="650" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="560" height="30" align="center" colspan="2" style="background:#f4f4f4; font-size:18px; padding-left:10px; ">Recommended Categories</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<% data.EnRecommendedCategories.forEach(function(data, index){   %>
+					<% if(!(index%2)){ %>  <tr> <% } %>
+						<% include ../EnRecommendedCategories %>
+					<% if(!((index+1)%2)){ %>  </tr> <% } %>
+				<% }) %>
+			</table>
+		</td>
+	</tr>
+</table>
+

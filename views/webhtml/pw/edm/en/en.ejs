@@ -1,0 +1,163 @@
+<table width="650" border="0" cellspacing="0" cellpadding="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; background-color:#FFFFFF; color:#333333;">
+	<tbody>
+		<tr>
+			<td>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td>
+								<a href="<%= data.Others[0].href %>" target="_blank"><img src="images/pandawholelogo.jpg" width="314" height="74" border="0" style="display:block;"></a>
+							</td>
+							<td align="right">
+								<a href="http://www.pandawhole.com/Assorted-Products/wholesale-Free-Beads-Catalog-Samples/1-1-1921-1-1.html?utm_campaign=Weekly20170202&utm_medium=EDM20170202&utm_source=EDM&utm_content=LG" target="_blank"><img src="images/free-catalog-2014.jpg" width="150" height="74" border="0" style="display:block;"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table style="font-family:Arial, Helvetica, sans-serif;" bgcolor="#8e55a4" border="0" cellpadding="0" cellspacing="0" height="40" width="650">
+					<tbody>
+						<tr>
+							<td style="border-right:1px solid #a577b6;" align="center" width="90">
+								<a href="<%= data.Others[1].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Jewelry Beads</a>
+							</td>
+							<td style="border-right:1px solid #a577b6;" align="center" width="99">
+								<a href="<%= data.Others[2].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Jewelry Findings</a>
+							</td>
+							<td style="border-right:1px solid #a577b6;" align="center" width="102">
+								<a href="<%= data.Others[3].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Beading Supplies</a>
+							</td>
+							<td style="border-right:1px solid #a577b6;" align="center" width="108">
+								<a href="<%= data.Others[4].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Stringing Materials</a>
+							</td>
+							<td style="border-right:1px solid #a577b6;" align="center" width="99">
+								<a href="<%= data.Others[5].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Hair Accessories<br> &amp; Findings</a>
+							</td>
+							<td style="border-right:1px solid #a577b6;" align="center" width="71">
+								<a href="<%= data.Others[6].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Jewelry &amp; <br>Watches</a>
+							</td>
+							<td align="center" width="75">
+								<a href="<%= data.Others[7].href %>" target="_blank" style=" font-size:12px; color:#ffffff; text-decoration:none;">Sewing <br>&amp; Knitting</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-bottom:#e4e4e4 1px solid;">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr>
+							<td>
+								<table width="650" border="0" cellspacing="0" cellpadding="0">
+
+									<tbody>
+										<tr>
+											<td style="padding:0px 0px 10px;">
+												<table width="650" border="0" cellspacing="0" cellpadding="0">
+													<tbody>
+														<tr>
+															<td>
+																<a href="<%= data.Others[8].href %>" target="_blank">
+																	<img src="images/<%= data.Others[8].src %>.jpg" style="border:0; display:block;" width="650" height="<%= data.Others[8].height %>" border="0"></a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<table border="0" cellpadding="0" cellspacing="0" width="650">
+									<tbody>
+										<tr>
+											<td style="background:#f4f4f4; font-size:20px; padding-left:10px;color: #333333;" align="left" height="30">Hot Sellers</td>
+											<td style="background:#f4f4f4; font-size:12px; padding-right:10px; " align="right" height="30">
+												<a href="<%= data.Others[9].href %>" target="_blank" style="text-decoration:underline; color:#333333;">View More&gt;&gt;</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table style="font-size: 12px;" width="650" cellspacing="0" cellpadding="0" border="0">
+
+									<tbody>
+										<% data.HotSellers.forEach(function(data, index){   %>
+										<% if(!(index%4)){ %>
+										<tr>
+											<% } %>
+											<% include ../HotSellers %>
+											<% if(!((index+1)%4)){ %> </tr>
+										<% } %>
+										<% }) %>
+									</tbody>
+								</table>
+
+						</tr>
+
+						<tr>
+							<td>
+								<table border="0" cellpadding="0" cellspacing="0" width="650">
+									<tbody>
+										<tr>
+											<td style="background:#f4f4f4; font-size:20px; padding-left:10px;color: #333333;" align="left" height="30">Hot Categories</td>
+											<td style="background:#f4f4f4; font-size:12px; padding-right:10px; " align="right" height="30">
+												<a href="<%= data.Others[10].href %>" target="_blank" style="text-decoration:underline; color:#333333;">View More&gt;&gt;</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<table style="font-size: 12px;" width="650" cellspacing="0" cellpadding="0" border="0">
+
+									<tbody>
+										<% data.HotCategories.forEach(function(data, index){   %>
+										<% if(!(index%2)){ %>
+										<tr>
+											<% } %>
+											<% include ../HotCategories %>
+											<% if(!((index+1)%2)){ %> </tr>
+										<% } %>
+										<% }) %>
+									</tbody>
+								</table>
+						</tr>
+					</tbody>
+				</table>
+				</td>
+		</tr>
+
+		<tr>
+			<td bgcolor="#f5f5f5" style="border-top:#fff 1px solid; padding:10px;">
+				<p><strong>Do you offer Free shipping?</strong><br> Yes. We offer Free Shipping by sea freight for the order's weight over <strong>300KG</strong> to 18 countries. Want to know more <br />about our
+					<a href="http://www.pandawhole.com/HelpDetail.aspx?TId=24&amp;utm_source=EDM&amp;utm_medium=EDM0721&amp;utm_content=RP17&amp;utm_campaign=RP170721" target="_blank" style="color: #03039c;">Free Shipping Policy</a> ?</p>
+				<p><strong>Unsubscribe:</strong><br> To unsubscribe, Please Click
+					<a href="#" target="_blank" style="color: #03039c;"> Here</a>.<br> Questions? Our friendly Customer Service team is here for you:<br>
+				</p>
+				<div style=" text-align:center">
+					<a href="http://www.pandawhole.com/SendQuestion.aspx?utm_source=EDM&amp;utm_medium=EDM0721&amp;utm_content=RP19&amp;utm_campaign=RP190721" target="_blank" style="color: #03039c;">Online Form</a><br> China Phone: +86( 0)755-86008595<br> Customer service email:
+					<a href="mailto:sales@Pandawhole.com" style="color: #03039c;">sales@Pandawhole.com</a>
+					<p></p>
+					<p>Click here to view our Privacy Policy<br>
+						<a href="http://www.pandawhole.com/HelpDetail.aspx?TId=3&amp;utm_source=EDM&amp;utm_medium=EDM0721&amp;utm_content=RP20&amp;utm_campaign=RP200721" target="_blank" style="color: #03039c;">Privacy Policy</a><br> The Best Value China Wholesale Beads Supplier<br> Copyright &copy; 2009-2017 Pandawhole.com. All Rights Reserve</p>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

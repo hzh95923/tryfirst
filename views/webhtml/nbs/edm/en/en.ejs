@@ -1,0 +1,89 @@
+<table style="border:#eee solid 3px;font-family:Arial,Helvetica,sans-serif;font-size:12px" width="644" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff">
+	<tbody>
+		<tr>
+			<td>
+				<table style="border-bottom:2px solid #3a579a" width="644" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<tr>
+							<td style="padding:10px 0 9px 18px" width="136">
+								<a target="_blank" href="<%=data.Others[0].href%>"><img src="images/Logo.jpg" style="display:block;border:none" height="56" width="136"></a>
+							</td>
+							<td width="267">&nbsp;</td>
+							<td style="padding:6px 17px 0 0" width="247"><img src="images/48h-or-less-dispatching.jpg" style="display:block;border:none" height="69" width="247"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:9px 17px 0 18px" valign="top" align="center">
+				<a target="_blank" href="<%=data.Others[1].href%>">
+					<img src="images/<%=data.Others[1].src%>.jpg" style="display:block;border:none" height="<%=data.Others[1].height%>" width="609"></a>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="padding:11px 17px 0 18px" valign="top" align="center">
+				<strong style="font-size:20px;height:36px;line-height:36px;display:block;background:#f8567e;color:#ffffff;text-transform:uppercase">Hot Sales</strong></td>
+		</tr>
+
+		<tr>
+			<td valign="top" align="center" style="padding:0 17px 0px 18px;">
+				<table style="font-size:12px;font-family:Arial,Helvetica,sans-serif;background:#ffcad7" width="609" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<% data.HotSales.forEach(function(data, index){   %>
+						<% if(!(index%2)){ %>
+						<tr>
+							<% } %>
+							<% include ../HotSales %>
+							<% if(!((index+1)%2)){ %> </tr>
+						<% } %>
+						<% }) %>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="padding:0px 17px 0 18px" valign="top" align="center">
+				<strong style="font-size:20px;height:36px;line-height:36px;display:block;background:#f8567e;color:#ffffff;text-transform:uppercase">Recommended Categories</strong></td>
+		</tr>
+		<tr>
+			<td style="padding:0 17px 10px 18px">
+				<table style="font-size:12px;font-family:Arial,Helvetica,sans-serif;background:#ffcad7" width="609" cellspacing="0" cellpadding="0" border="0">
+					<tbody>
+						<% data.RecommendedCategories.forEach(function(data, index){   %>
+						<% if(!(index%3)){ %>
+						<tr>
+							<% } %>
+							<% include ../RecommendedCategories %>
+							<% if(!((index+1)%3)){ %> </tr>
+						<% } %>
+						<% }) %>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:10px 0 10px 10px" bgcolor="#eeeeee" width="634">
+				<table style="font-size:12px;font-family:Arial,Helvetica,sans-serif" border="0" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td colspan="2" height="30">
+								<a target="_blank" style="color:#3a579a" href="#">Update subscription preferences</a> <span style="color:#000">|</span>
+								<a target="_blank" style="color:#3a579a" href="#">Add us to your address book</a> <span style="color:#000">|</span>
+								<a target="_blank" style="color:#3a579a" href="#">Unsubscribe</a>
+							</td>
+						</tr>
+						<tr>
+							<td width="400"><span style="display:block;line-height:22px">You are currently subscribed as : zhangll@itecheasy.com</span> <span style="line-height:18px;font-weight:700;display:block;padding:20px 0">Comments? Questions?</span> <span style="line-height:18px;display:block">Our friendly Customer Service team is here to assist you:<br><a style="color:#3a579a" target="_blank" href="<%=data.Others[5].href%>">Online Form</a><br><br>China Phone: +86-027-59710538<br>Customer service email: <a target="_blank" style="color:#3a579a" href="#">sales@nbeads.com</a><br>Working Hours: Monday to Friday 8:30a.m. -5:30p.m. GMT+8</span> <span style="display:block;padding:20px 0">Connect with us on...<br><a target="_blank" href="<%=data.Others[2].href%>" style="margin-right:10px"><img src="images/Facebook.jpg" style="border:none" height="33" width="33" border="0"></a> <a target="_blank" href="<%=data.Others[3].href%>" style="margin-right:10px"><img src="images/Twitter.jpg" style="border:none" border="0" height="33" width="33"></a> <a target="_blank" href="<%=data.Others[4].href%>"><img src="images/Pinterest.jpg" style="border:none" height="33" width="33" border="0"></a></span> <span style="display:block">Please read our <a style="color:#3a579a" target="_blank" href="<%=data.Others[6].href%>">Privacy Policy</a> .<br><br>nbeads.com --EC World International Limited .<br>Copyright &copy; 2012-2017 All rights reserved.</span></td>
+							<td width="234">
+								<a target="_blank" href="http://www.nbeads.com/article-what-is-happening-post-share-and-win-cash-939.html"><img src="images/post-share-and-win.jpg" style="border:none" border="0" height="242" width="180"></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>

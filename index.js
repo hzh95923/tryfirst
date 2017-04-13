@@ -8,11 +8,8 @@ const flash = require('connect-flash');
 const pkg = require('./package');
 const config = require('config-lite');
 const routers = require('./routers/routers');
-const compression = require('compression')
 
 var app = express();
-//gzip压缩
-app.use(compression());
 //实时通讯
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -21,11 +18,11 @@ io.on("connection", function(socket) {});
 
 //设置全局变量
 app.locals.cms = {
-		title: pkg.name,
-		description: pkg.description
-	}
+	title: pkg.name,
+	description: pkg.description
+}
 //支持代理
-//app.set('trust proxy', 1); // trust first proxy 
+app.set('trust proxy', 1); // trust first proxy 
 //使用express-session挂载session信息
 app.use(session({
 	name: config.session.key, // 设置 cookie 中保存 session id 的字段名称

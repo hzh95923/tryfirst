@@ -28,7 +28,6 @@ module.exports = function(url, items, callback) {
 		});
 
 	}, function(err, result) {
-		console.log(result);
 		if(err) callback(err, null);
 		callback(null, result);
 	});

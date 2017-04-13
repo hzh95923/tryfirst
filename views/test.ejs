@@ -20,13 +20,16 @@
 			</form>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-xs-12 result">
+			
+		</div>
+	</div>
 </div>
-<script src="/socket.io/socket.io.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#submit').click(function() {
-			var socket = io();
 			var fd = new FormData($('#formupload')[0]);
 			if(!$('.upfiles').val()){
 				return;
@@ -42,12 +45,8 @@
 				async: true,
 				dataType: "json",
 				success: function(data) {
-					//console.log(data);
+					$('.result').html(data);
 				}
-			});
-			socket.on("dataToUser", function(data) {
-				$('.progress').slideDown();
-				$('.progress-bar').width(data + "%").text(data + "%");
 			});
 		});
 
